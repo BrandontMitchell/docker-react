@@ -1,0 +1,9 @@
+sudo: require # super permissions
+services:
+    - docker  #install copy of docker into running container
+
+before_install:
+    - docker build -t bmitchell/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true bmitchell/docker-react npm run test
